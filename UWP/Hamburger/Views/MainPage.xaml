@@ -1,0 +1,72 @@
+﻿<pages:SmartPage
+    xmlns:pages="using:Common.ViewLayer.Pages"
+    x:Class="Hamburger.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:w="using:Common.ViewLayer.Windows"
+    xmlns:cts="using:Common.ViewLayer.TemplateSelectors" 
+    xmlns:local="using:Hamburger"
+    xmlns:model="using:Hamburger.BL.Models.Main"
+    xmlns:converters="using:Hamburger.Converters.Main"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:cb="using:Common.ViewLayer.Behaviors"
+    xmlns:actions="using:Hamburger.Actions.Main"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <pages:SmartPage.Resources>
+        <ResourceDictionary>
+            <converters:PageNameToLocalizedNameConverter x:Name="PageNameToLocalizedName" />
+
+            <w:MainWindowTitleBar x:Name="TitleBar" Foreground="{x:Bind ViewModel.SystemButtonsForeground, Mode=OneWay}" />
+        </ResourceDictionary>
+    </pages:SmartPage.Resources>
+
+    <wc:NavigationView x:Name="MainNavigationView" x:Uid="MainNavigationView"
+                       PaneDisplayMode="{x:Bind ViewModel.NavigationOptions.DisplayMode, Mode=OneWay}"
+                       IsBackEnabled="{x:Bind ContentFrame.CanGoBack, Mode=OneWay}" IsSettingsVisible="False"
+                       MenuItemsSource="{x:Bind ViewModel.MainMenuItems}"
+                       FooterMenuItemsSource="{x:Bind ViewModel.FooterMenuItems}"
+                       SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}">
+        <wc:NavigationView.Resources>
+            <ResourceDictionary>
+                <DataTemplate x:Key="NotNullTemplate" x:DataType="model:PageModel">
+                    <wc:NavigationViewItem Content="{x:Bind Name, Converter={StaticResource PageNameToLocalizedName}}">
+                        <wc:NavigationViewItem.Icon>
+                            <SymbolIcon Symbol="{x:Bind Icon}" />
+                        </wc:NavigationViewItem.Icon>
+                    </wc:NavigationViewItem>
+                </DataTemplate>
+                <DataTemplate x:Key="NullTemplate" x:DataType="model:PageModel">
+                    <wc:NavigationViewItemSeparator />
+                </DataTemplate>
+            </ResourceDictionary>
+        </wc:NavigationView.Resources>
+        <wc:NavigationView.MenuItemTemplateSelector>
+            <cts:NullTemplateSelector NullTemplate="{StaticResource NullTemplate}" NotNullTemplate="{StaticResource NotNullTemplate}" />
+        </wc:NavigationView.MenuItemTemplateSelector>
+
+        <interactivity:Interaction.Behaviors>            
+            <behaviors:EventTriggerBehavior EventName="ItemInvoked">
+                <actions:NavigateToInvokedItemAction ContentFrame="{x:Bind ContentFrame}" />
+            </behaviors:EventTriggerBehavior>
+            <behaviors:EventTriggerBehavior EventName="BackRequested">
+                <behaviors:CallMethodAction TargetObject="{x:Bind ContentFrame}" MethodName="GoBack" />
+            </behaviors:EventTriggerBehavior>
+        </interactivity:Interaction.Behaviors>
+
+        <Frame x:Name="ContentFrame" IsTabStop="True" Navigated="{x:Bind ViewModel.OnFrameNavigated}">
+            <interactivity:Interaction.Behaviors>
+                <behaviors:EventTriggerBehavior EventName="Loaded">
+                    <actions:SetInitialFrameStateAction DefaultPageModel="{x:Bind ViewModel.SelectedItem, Mode=OneWay}" NavigationStateString="{x:Bind ViewModel.NavigationOptions.MainFrameNavigationHistory}" />
+                </behaviors:EventTriggerBehavior>
+                <cb:NavigateBackWhenSystemBackButtonPressedBehavior />
+            </interactivity:Interaction.Behaviors>
+        </Frame>
+
+    </wc:NavigationView>
+</pages:SmartPage>

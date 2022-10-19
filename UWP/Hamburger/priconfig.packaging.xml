@@ -1,0 +1,7 @@
+﻿<packaging>
+  <!-- Copy ALL resources during installation process
+  <autoResourcePackage qualifier="Language" />
+  <autoResourcePackage qualifier="Scale" />
+  <autoResourcePackage qualifier="DXFeatureLevel" />
+  -->
+</packaging>

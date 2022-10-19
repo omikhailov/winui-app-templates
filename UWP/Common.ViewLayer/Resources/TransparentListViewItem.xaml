@@ -1,0 +1,27 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="ListViewItemBackground" Color="Transparent" />
+            <SolidColorBrush x:Key="ListViewItemBackgroundPointerOver" Color="Transparent" />
+            <SolidColorBrush x:Key="ListViewItemBackgroundPressed" Color="Transparent" />
+            <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="Transparent" />
+            <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="Transparent" />
+            <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPressed" Color="Transparent" />
+            <Thickness x:Key="ListViewItemRevealBorderThemeThickness">0</Thickness>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast" />
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style x:Key="PlainListViewItemContainerStyle" TargetType="ListViewItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <ContentPresenter HorizontalContentAlignment="Stretch" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>    
+</ResourceDictionary>

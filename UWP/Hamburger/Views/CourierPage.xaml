@@ -1,0 +1,91 @@
+﻿<pages:SmartPage
+    xmlns:pages="using:Common.ViewLayer.Pages"
+    x:Class="Hamburger.Views.CourierPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hamburger.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:cb="using:Common.ViewLayer.Behaviors" 
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity" 
+    xmlns:wc="using:Microsoft.UI.Xaml.Controls" 
+    xmlns:cc="using:Common.ViewLayer.Converters" 
+    xmlns:w="using:Common.ViewLayer.Windows" 
+    xmlns:ct="using:Common.ViewLayer.TemplateSelectors" 
+    xmlns:converters="using:Hamburger.Converters.Orders" 
+    xmlns:entities="using:Hamburger.BL.Models.Entities" 
+    xmlns:ccm="using:Common.ViewLayer.Commands" xmlns:ccn="using:Common.ViewLayer.Conditions"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <pages:SmartPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Common.ViewLayer/Resources/PageMargins.xaml" />
+                <ResourceDictionary Source="ms-appx:///Common.ViewLayer/Resources/TiledContentStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <cc:ElementThemeToForegroundColorConverter x:Key="ElementThemeToForegroundColor" />
+
+            <w:AppWindowTitleBar x:Name="TitleBar" Window="{x:Bind Window, Mode=OneWay}" Foreground="{x:Bind ActualTheme, Mode=OneWay, Converter={StaticResource ElementThemeToForegroundColor}}" />
+
+            <ct:EmptyWhenNullTemplateSelector x:Key="EmptyWhenNull" Template="{StaticResource CourierTemplate}" />
+
+            <converters:OrderStatusToLocalizedStringConverter x:Key="OrderStatusToLocalizedString" />
+
+            <ccn:CollectionHasItemsCondition x:Name="BagHasItems" Collection="{x:Bind ViewModel.Model.Bag, Mode=OneWay}" />
+            
+            <ccm:OpenInNewWindowCommand x:Name="OpenOrderWindow" Page="OrderPage" RequestedSize="360, 700" ExtendViewIntoTitleBar="True" />            
+
+            <DataTemplate x:Key="CourierTemplate" x:DataType="entities:Courier">
+                <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="{StaticResource SecondaryContentPage}">
+                    <StackPanel HorizontalAlignment="Stretch">
+
+                        <TextBlock Text="{x:Bind FullName}" Style="{StaticResource SubtitleTextBlockStyle}" Margin="{StaticResource TileTitleMargin}" />
+
+                        <Image Source="{x:Bind Photo}" MaxWidth="360" HorizontalAlignment="Left" Margin="0,8,0,16" />
+
+                        <TextBlock x:Uid="CourierBag" Text="Bag" Style="{StaticResource SubtitleTextBlockStyle}" Margin="{StaticResource TileTitleMargin}" />
+
+                        <Grid Margin="{StaticResource TileItemMargin}">
+                            <TextBlock x:Uid="CourierBagIsEmpty" Text="Bag is empty" Visibility="{Binding ElementName=BagHasItems, Path=IsFalse}" />
+
+                            <wc:ItemsRepeater ItemsSource="{x:Bind Bag}" HorizontalAlignment="Stretch">
+                                <wc:ItemsRepeater.ItemTemplate>
+                                    <DataTemplate x:DataType="entities:Order">
+                                        <StackPanel HorizontalAlignment="Stretch">
+                                            <Grid Margin="{StaticResource TileItemMargin}">
+                                                <HyperlinkButton Command="{StaticResource OpenOrderWindow}" CommandParameter="{x:Bind Id}" Margin="-1" Padding="0" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}">
+                                                    <TextBlock FontWeight="SemiBold" IsHitTestVisible="False">
+                                                        <Run Text="{x:Bind Address.Line}" /> <Run Text="|" />
+                                                        <Run Text="{x:Bind Client.FullName}" />
+                                                    </TextBlock>
+                                                </HyperlinkButton>
+                                            </Grid>
+
+                                            <wc:ItemsRepeater ItemsSource="{x:Bind OrderLines}" HorizontalAlignment="Stretch" Margin="16,0,0,0">
+                                                <wc:ItemsRepeater.ItemTemplate>
+                                                    <DataTemplate x:DataType="entities:OrderLine">
+                                                        <TextBlock Margin="{StaticResource TileItemMargin}" IsTextSelectionEnabled="True">
+                                                            <Run Text="{x:Bind Product.Title}" /> <Run Text="X" /> <Run Text="{x:Bind Quantity}" />
+                                                        </TextBlock>
+                                                    </DataTemplate>
+                                                </wc:ItemsRepeater.ItemTemplate>
+                                            </wc:ItemsRepeater>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </wc:ItemsRepeater.ItemTemplate>
+                            </wc:ItemsRepeater>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </DataTemplate>
+        </ResourceDictionary>
+    </pages:SmartPage.Resources>
+
+    <interactivity:Interaction.Behaviors>
+        <cb:CloseAppWindowWhenItHidesInTabletModeBehavior />
+    </interactivity:Interaction.Behaviors>
+
+    <ContentControl Content="{x:Bind ViewModel.Model, Mode=OneWay}" ContentTemplateSelector="{StaticResource EmptyWhenNull}"
+                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="{StaticResource ElementUnderTitleBar}" />
+</pages:SmartPage>

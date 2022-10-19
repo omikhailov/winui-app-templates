@@ -1,0 +1,82 @@
+﻿<pages:SmartPage
+    xmlns:pages="using:Common.ViewLayer.Pages"
+    x:Class="Hamburger.Views.OrderPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hamburger.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:cc="using:Common.ViewLayer.Converters"
+    xmlns:w="using:Common.ViewLayer.Windows"
+    xmlns:ct="using:Common.ViewLayer.TemplateSelectors" 
+    xmlns:converters="using:Hamburger.Converters.Orders"
+    xmlns:entities="using:Hamburger.BL.Models.Entities" 
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:cb="using:Common.ViewLayer.Behaviors"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <pages:SmartPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Common.ViewLayer/Resources/PageMargins.xaml" />
+                <ResourceDictionary Source="ms-appx:///Common.ViewLayer/Resources/TiledContentStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <cc:ElementThemeToForegroundColorConverter x:Key="ElementThemeToForegroundColor" />
+
+            <w:AppWindowTitleBar x:Name="TitleBar" Window="{x:Bind Window, Mode=OneWay}" Foreground="{x:Bind ActualTheme, Mode=OneWay, Converter={StaticResource ElementThemeToForegroundColor}}" />
+
+            <ct:EmptyWhenNullTemplateSelector x:Key="EmptyWhenNull" Template="{StaticResource OrderTemplate}" />
+
+            <converters:OrderStatusToLocalizedStringConverter x:Key="OrderStatusToLocalizedString" />
+
+            <DataTemplate x:Key="OrderTemplate" x:DataType="entities:Order">
+                <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="{StaticResource SecondaryContentPage}">
+                    <StackPanel HorizontalAlignment="Stretch">
+
+                        <TextBlock Text="{x:Bind Status, Converter={StaticResource OrderStatusToLocalizedString}}" Style="{StaticResource SubtitleTextBlockStyle}" Margin="{StaticResource TileTitleMargin}" />
+                        <wc:ItemsRepeater ItemsSource="{x:Bind OrderLines}" HorizontalAlignment="Stretch" Margin="{StaticResource TileItemMargin}">
+                            <wc:ItemsRepeater.ItemTemplate>
+                                <DataTemplate x:DataType="entities:OrderLine">
+                                    <Grid Margin="0,0,0,8" RowSpacing="4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="Auto" MinWidth="60" />
+                                            <ColumnDefinition Width="Auto" MinWidth="40" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Bind Product.Title}" FontWeight="SemiBold" IsTextSelectionEnabled="True" />
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind Product.Price}" HorizontalAlignment="Right" FontWeight="SemiBold" IsTextSelectionEnabled="True" />
+                                        <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" FontWeight="SemiBold" IsTextSelectionEnabled="True">
+                                            <Run Text="X" /> <Run Text="{x:Bind Quantity}" />
+                                        </TextBlock>
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind Product.Description}" TextWrapping="WrapWholeWords" FontWeight="Light" IsTextSelectionEnabled="True" />
+                                    </Grid>
+                                </DataTemplate>
+                            </wc:ItemsRepeater.ItemTemplate>
+                        </wc:ItemsRepeater>
+                        <TextBlock HorizontalAlignment="Right" FontWeight="SemiBold" IsTextSelectionEnabled="True">
+                            <Run x:Uid="OrderTotal" Text="Total:" /> <Run Text="{x:Bind Price}" />
+                        </TextBlock>
+
+                        <TextBlock x:Uid="OrderDeliverTo" Text="Deliver to Client" Style="{StaticResource SubtitleTextBlockStyle}" Margin="{StaticResource TileTitleMargin}" />
+                        <TextBlock Margin="{StaticResource TileItemMargin}" TextWrapping="WrapWholeWords" IsTextSelectionEnabled="True">
+                            <Run Text="{x:Bind Client.FullName}" /> <Run x:Uid="OrderWaitingAt" Text="waiting at" /> <Run Text="{x:Bind Address.Line}" />
+                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+            </DataTemplate>
+        </ResourceDictionary>
+    </pages:SmartPage.Resources>
+
+    <interactivity:Interaction.Behaviors>
+        <cb:CloseAppWindowWhenItHidesInTabletModeBehavior />
+    </interactivity:Interaction.Behaviors>
+
+    <ContentControl Content="{x:Bind ViewModel.Model, Mode=OneWay}" ContentTemplateSelector="{StaticResource EmptyWhenNull}"
+                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="{StaticResource ElementUnderTitleBar}" />
+</pages:SmartPage>

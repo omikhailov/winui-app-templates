@@ -1,0 +1,38 @@
+﻿<pages:SmartPage
+    xmlns:pages="using:Common.ViewLayer.Pages"
+    x:Class="Hamburger.Views.MapPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hamburger.Views"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:geo="using:Windows.Devices.Geolocation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:ccm="using:Common.ViewLayer.Commands" 
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity" 
+    xmlns:behaviors="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:converters="using:Hamburger.Converters.Map"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <pages:SmartPage.Resources>
+        <ResourceDictionary>
+            <converters:MapElementClickEventArgsToTagConverter x:Name="MapElementClickEventArgsToTag" />
+
+            <ccm:OpenInNewWindowCommand x:Name="OpenCourierWindow" Page="CourierPage" RequestedSize="360, 700" ExtendViewIntoTitleBar="True" ParameterRequired="True" />
+        </ResourceDictionary>    
+    </pages:SmartPage.Resources>
+
+    <maps:MapControl x:Name="Map" MapServiceToken="BAwy9724wXxl2ixW3Bfq~CXtWW3i28L2Y2zwc-6JFUA~Ag1giUW7_zazGVDVexIh0lNUnAEfbjcanLzJvO256UJgUrvWSS19Ifu8R0_j5gRz"
+                     Center="{x:Bind ViewModel.Center, Mode=TwoWay}" 
+                     Layers="{x:Bind ViewModel.Layers}" 
+                     ZoomLevel="{x:Bind ViewModel.Zoom, Mode=TwoWay}"
+                     Margin="-32,-44,0,0">
+
+        <interactivity:Interaction.Behaviors>
+            <behaviors:EventTriggerBehavior EventName="MapElementClick">
+                <behaviors:InvokeCommandAction Command="{StaticResource OpenCourierWindow}" InputConverter="{StaticResource MapElementClickEventArgsToTag}" />
+            </behaviors:EventTriggerBehavior>
+        </interactivity:Interaction.Behaviors>
+    </maps:MapControl>
+</pages:SmartPage>

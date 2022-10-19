@@ -1,0 +1,26 @@
+﻿<pages:SmartPage
+    xmlns:pages="using:Common.ViewLayer.Pages"
+    x:Class="Hamburger.Views.WelcomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hamburger.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:cts="using:Common.ViewLayer.TemplateSelectors"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <pages:SmartPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Common.ViewLayer/Resources/PageMargins.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <cts:DynamicTemplateSelector x:Key="DynamicTemplateSelector" x:Uid="WelcomeTemplateSelector" />
+        </ResourceDictionary>        
+    </pages:SmartPage.Resources>
+
+    <ScrollViewer x:Name="Root">
+        <ContentControl ContentTemplateSelector="{StaticResource DynamicTemplateSelector}" Padding="{StaticResource ContentPageAlignedWithHamburger}" />
+    </ScrollViewer>
+</pages:SmartPage>

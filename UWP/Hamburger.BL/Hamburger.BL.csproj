@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A05BBD15-C3BF-45ED-AE36-7F0FE63A3C3A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hamburger.BL</RootNamespace>
+    <AssemblyName>Hamburger.BL</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+    <PlatformTarget>ARM64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <PlatformTarget>ARM64</PlatformTarget>
+    <OutputPath>bin\ARM64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Models\Entities\Address.cs" />
+    <Compile Include="Models\Entities\Client.cs" />
+    <Compile Include="Models\Entities\Courier.cs" />
+    <Compile Include="Models\Entities\Order.cs" />
+    <Compile Include="Models\Entities\OrderLine.cs" />
+    <Compile Include="Models\Entities\OrderStatus.cs" />
+    <Compile Include="Models\Entities\Product.cs" />
+    <Compile Include="Models\Main\PageModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Data\DataService.cs" />
+    <Compile Include="Services\Data\IDataService.cs" />
+    <Compile Include="Services\Licensing\ILicensingService.cs" />
+    <Compile Include="Services\Licensing\LicensingService.cs" />
+    <Compile Include="Services\Lifecycle\ILifecycleService.cs" />
+    <Compile Include="Services\Lifecycle\LifecycleService.cs" />
+    <Compile Include="Services\Logging\LoggingService.cs" />
+    <Compile Include="Services\Navigation\NavigationService.cs" />
+    <Compile Include="Services\Settings\BasicGeopositionParameter.cs" />
+    <Compile Include="Services\Settings\ISettingsService.cs" />
+    <Compile Include="Services\Settings\SettingsService.cs" />
+    <Compile Include="Services\Telemetry\ITelemetryService.cs" />
+    <Compile Include="Services\Telemetry\TelemetryService.cs" />
+    <Compile Include="Services\Views\IViewsService.cs" />
+    <Compile Include="Services\Views\ViewsService.cs" />
+    <Compile Include="ViewModels\Couriers\CouriersViewModel.cs" />
+    <Compile Include="ViewModels\Couriers\CourierViewModel.cs" />
+    <Compile Include="ViewModels\Couriers\ICouriersViewModel.cs" />
+    <Compile Include="ViewModels\Couriers\ICourierViewModel.cs" />
+    <Compile Include="ViewModels\Main\IMainViewModel.cs" />
+    <Compile Include="ViewModels\Map\IMapViewModel.cs" />
+    <Compile Include="ViewModels\Map\MapViewModel.cs" />
+    <Compile Include="ViewModels\Orders\IOrdersViewModel.cs" />
+    <Compile Include="ViewModels\Orders\IOrderViewModel.cs" />
+    <Compile Include="ViewModels\Orders\OrdersViewModel.cs" />
+    <Compile Include="ViewModels\Orders\OrderViewModel.cs" />
+    <Compile Include="ViewModels\Settings\ISettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\NavigationView\INavigationOptionsViewModel.cs" />
+    <Compile Include="ViewModels\Main\MainViewModel.cs" />
+    <Compile Include="ViewModels\Settings\NavigationView\NavigationOptionsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+    <EmbeddedResource Include="Properties\Hamburger.BL.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.14</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.8.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Common.DI\Common.DI.csproj">
+      <Project>{338f0bee-b25a-43f8-94c5-dcc19bd1d0b0}</Project>
+      <Name>Common.DI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.ModelLayer\Common.ModelLayer.csproj">
+      <Project>{04898bae-cca8-45c6-afba-ef9691663e79}</Project>
+      <Name>Common.ModelLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Services.Telemetry.AppCenter\Common.Services.Telemetry.AppCenter.csproj">
+      <Project>{78b9a282-a1bb-4c95-9653-5a9221f45b58}</Project>
+      <Name>Common.Services.Telemetry.AppCenter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Services.Telemetry\Common.Services.Telemetry.csproj">
+      <Project>{42650ab2-468d-4216-b4d4-663351f56ee4}</Project>
+      <Name>Common.Services.Telemetry</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Services\Common.Services.csproj">
+      <Project>{601033CC-E5A0-4265-BD97-4BE82306FDCD}</Project>
+      <Name>Common.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.ViewModelLayer\Common.ViewModelLayer.csproj">
+      <Project>{23064e16-5b8c-4b11-9da9-5abdbfdcab31}</Project>
+      <Name>Common.ViewModelLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

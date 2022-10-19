@@ -1,0 +1,246 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DataTemplate x:Key="Content">
+        <RichTextBlock MaxWidth="800">
+            <Paragraph HorizontalTextAlignment="Center" FontSize="20">Добро Пожаловать!</Paragraph>
+
+            <Paragraph Margin="0,16,0,0">
+                Это UWP приложение предназначено для моих клиентов. Оно является одновременно макетом и шаблоном для создания новых приложений. В качестве макета оно демонстрирует 
+                наиболее часто встречающиеся требования, а в качестве шаблона предоставляет готовую реализацию для них. Несколько тысяч строк готового к использованию кода позволят сэкономить 
+                пару недель рабочего времени и получить качественный результат даже для самых маленьких проектов. В этом шаблоне доступны следующие функции:
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Внешний вид:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Cвежая реализация Fluent Design на основе WinUI 2.7
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Панель навигации с меню-гамбургером.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Нет строгих требований к тому, как выглядит UWP приложение даже если предполагается опубликовать его в Microsoft Store. Вместо боковой панели можно использовать классическое верхнее меню или вкладки. 
+                Однако существует стойкий стереотип, что UWP приложения выглядят именно так, поэтому в этом макете тоже используется боковое меню.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Fluent Design позволяет использовать цвет вашего бренда в качестве фона панели навигации. 
+                Для того, чтобы продемонстрировать эту возможность, ее цвет в этом макете совпадает с тем, что вы выбрали в настройках Windows. Сообщите, если вам нужен брендовый цвет
+                или стандартный серый.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Поддержка персонализации и тем.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Если вы откроете
+                <Hyperlink NavigateUri="ms-settings:personalization-colors">настройки Windows</Hyperlink> и смените стандартный синий цвет на любой другой, эти настройки применятся и в макете.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Вы можете зайти на страницу настроек и выбрать светлую или темную тему.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Кастомизируемый заголовок окна
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Обратите внимание на системные кнопки в правом вержнем углу окна. Обычно они расположены на небольшой панели, которая называется Title Bar, 
+                но в этом макете приложение заменяет ее собственным контентом. В такой Title Bar можно добавить любые дополнительные элементы управления по вашему выбору.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Многооконность
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Существует стереотип, что UWP приложения могут работать только с одним окном. На самом деле это не так, просто старые API для работы со вторичными окнами были очень
+                неудобными и существенно замедляли разработку. В этом макете используется предварительная версия нового API для работы с дополнительными окнами, который доступен 
+                на Windows 10 1903 и более новых системах. Зайдите на страницу заказов и дважды кликните по любой строке в таблице, чтобы открыть карточку заказа.
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Навигация:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Последняя открытая страница
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Попробуйте перейти на любую другую страницу и закрыть приложение. Когда вы его снова откроете, оно продолжит с той же самой страницы. Более того, этот параметр
+                сохраняется в вашем профиле в облаке, поэтому если вы закроете приложение на планшете, а откроете позже на ноутбуке, то продолжите с той же самой страницы 
+                (если вы не отключали синхронизацию).
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • История навигации
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Попробуйте перейти на любую другую страницу. Закройте приложение, снова запустите а затем нажмите кнопку назад в левом верхнем углу. 
+                Вы вернетесь на предыдущую страницу.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                При необходимости историю навигации в вашем приложении можно заменить на жестко прописанные пути или вообще отключить эту кнопку.
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Локализация:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Приложение готово к локализации на другие языки
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Этот макет поддерживает английский и русский при помощи resw файлов, а шаблон этой страницы загружен динамически на основе ваших системных настроек.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                При необходимости, на страницу настроек можно добавить выбор языка.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Вы можете отказаться от поддержки локализации. Это незначительно снизит сроки разработки, но если позже вы передумаете, перевести приложение на другие языки будет тяжело.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Важно: если вы собираетесь публиковать свое приложение в Microsoft Store, оно обязательно должно поддерживать английский язык.
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Функции Windows для UWP:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Поддержка x86, x64, ARM и ARM64
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Поддержка расширенного жизненного цикла
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                В отличие от обычных приложений, UWP приложения умеют засыпать.
+                В этом шаблоне уже встроена удобная система реагирования на переход в такое состояние и он может корректно сохраняться и восстанавливаться. 
+                Попробуйте свернуть приложение и проверьте его статус в диспетчере задач. С большой долей вероятности оно будет отображаться со значком
+                <Run FontFamily="Segoe MDL2 Assets" Foreground="LimeGreen">&#xE8BE;</Run>, а потребление памяти будет минимальным.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Поддержка Prelaunch
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Скорее всего, вы знаете, что такое Superfetch в Windows 7. Prelaunch в Windows 10 это похожий механизм, но если Superfetch просто заранее загружает файлы в память,
+                то Prelaunch еще и заранее запускает приложения. Эта функция доступна только на UWP, а для ее поддержки нужно написать дополнительный код. Этот
+                шаблон поддерживает Prelaunch, а также позволяет при необходимости предварительно загрузить какие-либо данные. Например, настройки этого приложения загружаются заранее.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Поддержка управления памятью
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                При нехватке оперативной памяти Windows 10 сообщает UWP приложениям об этом и указывает, какие квоты им доступны. В этом шаблоне встроена система реагирования
+                на подобные события для того, чтобы можно было освободить неиспользуемую память, вернуться в рамки квот и избежать замедления работы или закрытия приложения.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Поддержка событий перехода в фоновое состояние
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                В шаблоне есть система реагирования на переход в фоновое состояние и возврат. Если приложение периодически обновляет данные по таймеру и делает для этого запрос к базе данных
+                или серверу, то нет смысла создавать нагрузку на них когда пользователь не видит этих данных.
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Логи и телеметрия:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Поддержка Microsoft App Center
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                App Center это облачный сервис для сбора логов, сообщений об ошибках и кастомных событиях. Только этот сервис позволяет просматривать Stack Trace исключений.
+                Интегрируется с Microsoft Partner Center и Application Insights. Не предоставляет практически никакой информации о пользователях и их предпочтениях, однако
+                этот шаблон отсылает в App Center информацию о стране пользователя.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                В этом шаблоне уже добавлено кастомное событие перехода на страницу. При необходимости можно добавить дополнительные события.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Важно: если вы собираетесь публиковать приложение в Microsoft Store, имейте в виду, что стабильность работы вашего приложения очень сильно влияет на его место в рейтинге. 
+                Даже отзывы и оценки пользователей могут иметь меньшее значение, чем статистика зависаний и падений, которую собирает телеметрия Windows 10.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Поддержка Google Analytics
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Google Analytics это облачный сервис для сбора информации о поведении пользователей и их предпочтениях, а также логов и кастомных событий.
+                Предназначен в первую очередь для Android приложений и маркетинговых исследований, плохо интегрирован с Windows. Не может показывать Stack Trace исключений, но зато
+                выдаст информацию о том, сайты какой тематики чаще всего посещают пользователи вашего приложения.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                В этом приложении не используется, но может быть легко подключен вместо App Center.
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Производительность:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Совместимость с .Net Native
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Данное приложение скомпилировано при помощи .Net Native — оптимизирующего компилятора, который позволяет достичь такой же производительности, как у
+                приложений написанных на C++.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Если вы собираетесь публиковать приложение в Microsoft Store, совместимость с этой технологией обязательна.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Кэш
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Простой кэш в памяти интегрированный с событиями управления памятью.
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>И наконец, чистый код:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • MVVM
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Приложение построено в соответствии с принципами MVVM без использования фреймворков. Код понятен любому разработчику, даже если он только поверхностно знаком с настольной и мобильной разработкой.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Используются Behavior и Action, а не обработчики событий
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Команды находятся на уровне представления, а не модели представления
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Все, что можно, используется повторно
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Dependency Injection
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Используется Unity с регистрацией по соглашению.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Messaging
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Используется WeakReferenceMessenger из Windows Community Toolkit.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Код решения разделен на 10 проектов
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Hamburger
+                <LineBreak />
+                Hamburger.BL
+                <LineBreak />
+                Common.ViewLayer
+                <LineBreak />
+                Common.ViewModelLayer
+                <LineBreak />
+                Common.ModelLayer
+                <LineBreak />
+                Common.DI
+                <LineBreak />
+                Common.Services
+                <LineBreak />
+                Common.Services.Telemetry
+                <LineBreak />
+                Common.Services.Telemetry.AppCenter
+                <LineBreak />
+                Common.Services.Telemetry.GoogleAnalytics
+                <LineBreak />
+            </Paragraph>
+        </RichTextBlock>
+    </DataTemplate>
+
+</ResourceDictionary>

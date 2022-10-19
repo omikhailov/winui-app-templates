@@ -1,0 +1,146 @@
+﻿<pages:SmartPage
+    xmlns:pages="using:Common.ViewLayer.Pages"
+    x:Class="Hamburger.Views.CouriersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Hamburger.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:ccv="using:Common.ViewLayer.Converters" 
+    xmlns:co="using:Hamburger.Converters.Orders" 
+    xmlns:ccn="using:Common.ViewLayer.Conditions" 
+    xmlns:ccm="using:Common.ViewLayer.Commands" 
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Microsoft.Xaml.Interactions.Core" 
+    xmlns:cb="using:Common.ViewLayer.Behaviors"
+    xmlns:ca="using:Common.ViewLayer.Actions"
+    xmlns:entities="using:Hamburger.BL.Models.Entities"     
+    xmlns:converters="using:Hamburger.Converters.Couriers"
+    xmlns:wc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <pages:SmartPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Common.ViewLayer/Resources/PageMargins.xaml" />
+                <ResourceDictionary Source="ms-appx:///Common.ViewLayer/Resources/TransparentListViewItem.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <ccv:XamlUICommandToTooltipConverter x:Key="XamlUICommandToTooltip" />
+            <co:AddressToStringConverter x:Key="AddressToString" />
+            <co:OrderLinesToInlineDescriptionStringConverter x:Key="OrderLinesToInlineDescriptionString" />
+            <converters:BooleanToFontWeightConverter x:Key="BooleanToFontWeight" />
+
+            <ccn:CollectionHasSelectedItemCondition x:Name="CourierSelected" Collection="{x:Bind ViewModel.Couriers, Mode=OneWay}" SelectedItem="{x:Bind ViewModel.SelectedCourier, Mode=OneWay}" />
+
+            <ccm:OpenInNewWindowCommand x:Name="OpenOrderWindow" Page="OrderPage" RequestedSize="360, 600" ExtendViewIntoTitleBar="True" />
+            <ccm:OpenInNewWindowCommand x:Name="OpenCourierWindow" Page="CourierPage" Parameter="{x:Bind ViewModel.SelectedCourier.Id, Mode=OneWay}" RequestedSize="360, 700" ExtendViewIntoTitleBar="True" />
+            <ccm:StandardCommand x:Name="OpenCourier" Kind="Open" Command="{x:Bind OpenCourierWindow}" CanExecute="{x:Bind CourierSelected.IsTrue, Mode=OneWay}" />
+
+            <ThemeShadow x:Name="CommonShadow" />
+        </ResourceDictionary>
+    </pages:SmartPage.Resources>
+
+    <Grid x:Name="Root">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <CommandBar Grid.Row="0" DefaultLabelPosition="Right">
+            <AppBarButton Command="{x:Bind OpenCourier}" ToolTipService.ToolTip="{x:Bind OpenCourier, Converter={StaticResource XamlUICommandToTooltip}}" />
+        </CommandBar>
+
+        <ListView Grid.Row="1" x:Name="CouriersList" ItemsSource="{x:Bind ViewModel.Couriers, Mode=OneWay}" SelectedItem="{x:Bind ViewModel.SelectedCourier, Mode=TwoWay}" 
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  Padding="{StaticResource ContentPageUnderCommandBar}" ItemContainerStyle="{StaticResource PlainListViewItemContainerStyle}">
+
+            <interactivity:Interaction.Behaviors>
+                <behaviors:EventTriggerBehavior EventName="DoubleTapped">
+                    <behaviors:InvokeCommandAction Command="{StaticResource OpenCourierWindow}" CommandParameter="{x:Null}" />
+                </behaviors:EventTriggerBehavior>
+                <cb:PreviewKeyDownTriggerBehavior Key="Enter">
+                    <behaviors:InvokeCommandAction Command="{StaticResource OpenCourierWindow}" CommandParameter="{x:Null}" />
+                </cb:PreviewKeyDownTriggerBehavior>
+                <behaviors:EventTriggerBehavior EventName="RightTapped">
+                    <ca:SelectRightTappedItemAction />
+                </behaviors:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="entities:Courier">
+                    <Grid Margin="0,0,0,16" MinHeight="100" Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.Resources>
+                            <ResourceDictionary>
+                                <ccn:CollectionHasItemsCondition x:Name="BagHasItems" Collection="{x:Bind Bag, Mode=OneWay}" />
+                                <ccn:ObjectEqualsCondition x:Name="ItemSelected" Left="{Binding ElementName=CouriersList, Path=SelectedItem}" Right="{x:Bind}" />
+                            </ResourceDictionary>
+                        </Grid.Resources>
+                        <Grid.ContextFlyout>
+                            <wc:CommandBarFlyout>
+                                <wc:CommandBarFlyout.SecondaryCommands>
+                                    <AppBarButton Command="{StaticResource OpenCourier}" />
+                                </wc:CommandBarFlyout.SecondaryCommands>
+                            </wc:CommandBarFlyout>
+                        </Grid.ContextFlyout>
+
+                        <wc:PersonPicture Grid.Column="0" ProfilePicture="{x:Bind Photo}" BadgeNumber="{x:Bind Bag.Count}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" Margin="16,8,0,0">
+                            <TextBlock Visibility="{Binding ElementName=BagHasItems, Path=IsTrue}" FontWeight="{Binding ElementName=ItemSelected, Path=IsTrue, Converter={StaticResource BooleanToFontWeight}}">
+                                <Run Text="{x:Bind FullName}" /> 
+                                <Run x:Uid="CouriersBag" Text="is carrying in the bag" /> 
+                                <Run Text="{x:Bind Bag.Count}" />
+                                <Run x:Uid="CouriersOrdersCount" Text="orders" />
+                            </TextBlock>
+
+                            <TextBlock Visibility="{Binding ElementName=BagHasItems, Path=IsFalse}" Foreground="Red" FontWeight="{Binding ElementName=ItemSelected, Path=IsTrue, Converter={StaticResource BooleanToFontWeight}}">
+                                <Run Text="{x:Bind FullName}" /> 
+                                <Run x:Uid="CouriersEmptyBag" Text="is fooling around" />
+                            </TextBlock>
+
+                            <wc:ItemsRepeater Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{x:Bind Bag}" HorizontalAlignment="Stretch" Margin="0,4,0,0"
+                                              Visibility="{Binding ElementName=ItemSelected, Path=IsFalse}">
+                                <wc:ItemsRepeater.ItemTemplate>
+                                    <DataTemplate x:DataType="entities:Order">
+                                        <TextBlock TextWrapping="WrapWholeWords" Margin="0,4,0,4" FontWeight="SemiLight">
+                                                    <Run Text="{x:Bind OrderLines, Converter={StaticResource OrderLinesToInlineDescriptionString}}" />
+                                                    <Run x:Uid="CouriersFor" Text="for" />
+                                                    <Run Text="{x:Bind Client.FullName}" />                                            
+                                                    <Run x:Uid="CouriersWaitingAt" Text="waiting at" />
+                                                    <Run Text="{x:Bind Address.Line}" />
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </wc:ItemsRepeater.ItemTemplate>
+                            </wc:ItemsRepeater>
+
+                            <wc:ItemsRepeater Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{x:Bind Bag}" HorizontalAlignment="Stretch" Margin="0,4,0,0"
+                                              Visibility="{Binding ElementName=ItemSelected, Path=IsTrue}">
+                                <wc:ItemsRepeater.ItemTemplate>
+                                    <DataTemplate x:DataType="entities:Order">
+                                        <HyperlinkButton Command="{StaticResource OpenOrderWindow}" CommandParameter="{x:Bind Id}"
+                                                         Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" Padding="0" Margin="-1">
+                                            <TextBlock TextWrapping="WrapWholeWords" IsHitTestVisible="False" Margin="0,4,0,4" FontWeight="SemiLight">
+                                                    <Run Text="{x:Bind OrderLines, Converter={StaticResource OrderLinesToInlineDescriptionString}}" />
+                                                    <Run x:Uid="CouriersFor" Text="for" />
+                                                    <Run Text="{x:Bind Client.FullName}" />                                            
+                                                    <Run x:Uid="CouriersWaitingAt" Text="waiting at" />
+                                                    <Run Text="{x:Bind Address.Line}" />
+                                            </TextBlock>
+                                        </HyperlinkButton>
+                                    </DataTemplate>
+                                </wc:ItemsRepeater.ItemTemplate>
+                            </wc:ItemsRepeater>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</pages:SmartPage>

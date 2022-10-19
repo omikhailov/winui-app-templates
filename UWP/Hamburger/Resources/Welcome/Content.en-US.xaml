@@ -1,0 +1,245 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:interactivity="using:Microsoft.Xaml.Interactivity" xmlns:behaviors="using:Microsoft.Xaml.Interactions.Core">
+
+    <DataTemplate x:Key="Content">
+        <RichTextBlock MaxWidth="800">
+            <Paragraph HorizontalTextAlignment="Center" FontSize="20">Welcome!</Paragraph>
+
+            <Paragraph Margin="0,16,0,0">
+                This UWP app intended for my clients, it is a mockup and template for new apps. As the mockup it demonstrates most popular requirements, and as the template it
+                provides ready to use implementation of them. Several thousands lines of code can save couple weeks of working time and get good quality even for smallest projects.
+                The following features are available in this template out of the box:
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Appearance:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • The latest implementation of Fluent Design based on WinUI 2.7
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Navigation panel with hamburger button
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                There are no strict requirements for how a UWP app looks, even if you are going to publish it in the Microsoft Store. Instead of a side navigation panel, it could have 
+                a classic top menu, tabs or anything else. However, there is a persistent stereotype that UWP apps look like this, and this mockup also uses a side menu to meet expectations.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Fluent Design allows using of brand color as navigation panel background. To demonstrate this option, the panel background color in the mockup matches the color 
+                you have selected in Windows settings. Please let me know if you would prefer to change it to your brand color or standard gray background.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Personalization and theming support
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                If you open <Hyperlink NavigateUri="ms-settings:personalization-colors">Windows Settings</Hyperlink> and change default blue color to any other, 
+                these settings will be applied in the template.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                You can visit settings page and select Light or Dark theme.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Customizable window title
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Take a look at system buttons in the top right corner of the window. Usually they are part of a small panel that is called Title Bar, 
+                but in this mockup app replaces that panel with custom content. Such Title Bar can contain any custom controls at your choice.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Secondary windows
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                There is a stereotype that UWP apps can only work with one window. In fact, this is not true, it was just that the old APIs for working with secondary windows were very
+                inconvenient and used to significantly slow down development. This layout uses a preview of the new API for working with secondary windows, which is available
+                on Windows 10 1903 and newer systems. Go to the orders page and double-click on any line in the table to open the order card.
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Navigation:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Last opened page
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Try to navigate to any other page and close app. When you will open it next time, it will continue from that last opened page, not from the Welcome screen.
+                Moreover, the app saves this option in your cloud profile and if you will close the app on a table and open it on PC, you will continue from the same page
+                (if you haven't turned off cloud sync, of course).
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Navigation history
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Try to open any other page. Close the app, reopen it and press Back button in the top left corner. You will return to this (previous) page.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                If you like, in your app navigation history can be replaced with hardcoded paths, or back button disabled.
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Localization:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • App is ready for translation to other languages.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                This mockup supports English and Russian languages with resw files, and template of this page is loaded dynamically based on your system settings.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                If necessary, a language selection option can be added to the settings page.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                You can opt out of localization support. This will slightly reduce development time, but if you will change your mind later, 
+                it will be difficult to translate the application into other languages.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Important: if you are going to publish your app in the Microsoft Store, it must have English language support.
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Windows features for UWP:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • X86, x64, ARM and ARM64 support
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Extended lifecycle support
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Unlike regular apps, UWP apps can fall asleep. This template already has a built-in convenient system for responding to the transition to suspended state, 
+                and app can correctly save and restore its state.
+                Try minimizing the application and check its status in the task manager. Most likely, it will be displayed with a
+                <Run FontFamily="Segoe MDL2 Assets" Foreground="LimeGreen">&#xE8BE;</Run> icon, and memory consumption will be minimal.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Prelaunch support
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                You most likely know what Superfetch is in Windows 7. Prelaunch in Windows 10 is a similar mechanism, but while Superfetch just pre-loads files into memory,
+                Prelaunch also launches applications in advance. This feature is only available on UWP and requires additional code to support it. This
+                template supports Prelaunch, and also allows the app to preload any data if necessary. For example, the settings of this application are loaded in advance.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Memory management
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                When there is a lack of RAM, Windows 10 informs UWP apps about it and indicates what quotas are available to them. This template has a built-in system
+                to response to such events, so that the app can free unused memory, return to quotas and avoid slowing down or forced closing.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Support for background transition events
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                The template has a system for responding to the transition to the background state. If the application periodically refreshes data by timer and makes requests to
+                a remote database or server, it makes no sense to create a load on them when the user does not see data.
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Logs and telemetry:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Microsoft App Center support
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                App Center is a cloud-based service for collecting logs, error messages and custom events. For apps compiled with .Net Native, only this service allows you 
+                to view Stack Trace for exceptions. Integrates with Microsoft Partner Center and Application Insights. Provides almost no information about users and their preferences,
+                however, in this template app sends information about user's country to App Center.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                This template has already added custom page transition event. Additional events can be added if needed.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Important: if you are going to publish your app in the Microsoft Store, keep in mind that the stability of your app greatly affects its ranking.
+                Even user feedback and ratings can be less important than the hang and crash statistics that Windows 10 Telemetry collects.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Google Analytics support
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Google Analytics is a cloud-based service for collecting information about user behavior and preferences, as well as logs and custom events.
+                Designed primarily for Android applications and marketing researches, it is poorly integrated with Windows. It can not show Stack Trace for exceptions, but
+                will give you a clue about sites of which category are most often visited by users of your application.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Not used in this app, but can be easily connected instead of App Center.
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Performance:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Compatibility with .Net Native
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                This application is compiled with .Net Native, an optimizing compiler that achieves the same level of performance as applications written in C++.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                If you are going to publish your app in the Microsoft Store, compatibility with this technology is required.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Cache
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Simple memory cache integrated with memory management events.
+            </Paragraph>
+
+            <Paragraph Margin="0,8,0,4">
+                <Bold>Clean code:</Bold>
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • MVVM
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                The application is built in accordance with MVVM principles without using frameworks. The code is understandable to any developer, 
+                even if they are only superficially familiar with desktop and mobile development.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Behaviors and Actions are used instead of event handlers.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Commands are at the View layer, not the View Model layer.
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Everything that can be reused, is being reused.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Dependency Injection
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Template uses Unity with registration by convention.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Messaging
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                WeakReferenceMessenger from Windows Community Toolkit used for messaging.
+            </Paragraph>
+            <Paragraph Margin="0,4,0,0">
+                • Solution code is split into 10 projects:
+            </Paragraph>
+            <Paragraph FontWeight="SemiLight" Margin="24,4,0,0">
+                Hamburger
+                <LineBreak />
+                Hamburger.BL
+                <LineBreak />
+                Common.ViewLayer
+                <LineBreak />
+                Common.ViewModelLayer
+                <LineBreak />
+                Common.ModelLayer
+                <LineBreak />
+                Common.DI
+                <LineBreak />
+                Common.Services
+                <LineBreak />
+                Common.Services.Telemetry
+                <LineBreak />
+                Common.Services.Telemetry.AppCenter
+                <LineBreak />
+                Common.Services.Telemetry.GoogleAnalytics
+                <LineBreak />
+            </Paragraph>
+        </RichTextBlock>
+    </DataTemplate>
+
+</ResourceDictionary>

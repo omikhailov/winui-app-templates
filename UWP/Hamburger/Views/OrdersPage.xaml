@@ -1,0 +1,127 @@
+﻿<pages:SmartPage
+    xmlns:pages="using:Common.ViewLayer.Pages"
+    x:Class="Hamburger.Views.OrdersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:entities="using:Hamburger.BL.Models.Entities"
+    xmlns:wc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:tc="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:converters="using:Hamburger.Converters.Orders"    
+    xmlns:ccm="using:Common.ViewLayer.Commands"
+    xmlns:ccn="using:Common.ViewLayer.Conditions"
+    xmlns:ccv="using:Common.ViewLayer.Converters"
+    xmlns:cb="using:Common.ViewLayer.Behaviors" 
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity" 
+    xmlns:behaviors="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:dgactions="using:Hamburger.Actions.DataGrid"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ca="using:Common.ViewLayer.Actions"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <pages:SmartPage.Resources>
+        <ResourceDictionary>
+            
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <SolidColorBrush x:Key="DataGridCellFocusVisualPrimaryBrush" Color="Transparent"/>
+                    <SolidColorBrush x:Key="DataGridCellFocusVisualSecondaryBrush" Color="Transparent"/>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="HighContrast" />
+            </ResourceDictionary.ThemeDictionaries>
+
+            <Style x:Key="GridCell" TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="12,0,4,0" />
+            </Style>
+
+            <ccv:XamlUICommandToTooltipConverter x:Key="XamlUICommandToTooltip" />
+            <converters:OrderStatusToLocalizedStringConverter x:Key="OrderStatusToLocalizedString" />
+            <converters:AddressToStringConverter x:Key="AddressToString" />
+
+            <ccn:CollectionHasSelectedItemCondition x:Name="OrderSelected" Collection="{x:Bind ViewModel.Orders, Mode=OneWay}" SelectedItem="{x:Bind ViewModel.SelectedOrder, Mode=OneWay}" />
+
+            <ccm:OpenInNewWindowCommand x:Name="OpenOrderWindow" Page="OrderPage" Parameter="{x:Bind ViewModel.SelectedOrder.Id, Mode=OneWay}" RequestedSize="360, 700" ExtendViewIntoTitleBar="True" />
+            <ccm:StandardCommand x:Name="OpenOrder" Kind="Open" Command="{x:Bind OpenOrderWindow}" CanExecute="{x:Bind OrderSelected.IsTrue, Mode=OneWay}" />
+            <ccm:StandardCommand x:Name="DeleteOrder" Kind="Delete" ExecuteRequested="{x:Bind ViewModel.DeleteSelectedOrder}" CanExecute="{x:Bind OrderSelected.IsTrue, Mode=OneWay}" />
+        </ResourceDictionary>
+    </pages:SmartPage.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <CommandBar Grid.Row="0" DefaultLabelPosition="Right">
+            <AppBarButton Command="{x:Bind OpenOrder}" ToolTipService.ToolTip="{x:Bind OpenOrder, Converter={StaticResource XamlUICommandToTooltip}}" />
+            <AppBarButton Command="{x:Bind DeleteOrder}" ToolTipService.ToolTip="{x:Bind DeleteOrder, Converter={StaticResource XamlUICommandToTooltip}}" />
+        </CommandBar>
+
+        <tc:DataGrid Grid.Row="1" x:Name="OrdersGrid" ItemsSource="{x:Bind ViewModel.Orders}" SelectedItem="{x:Bind ViewModel.SelectedOrder, Mode=TwoWay}"
+                     AutoGenerateColumns="False" IsReadOnly="True" CanUserSortColumns="True" SelectionMode="Single">
+            <interactivity:Interaction.Behaviors>
+                <behaviors:EventTriggerBehavior EventName="Sorting">
+                    <dgactions:SortAction />
+                </behaviors:EventTriggerBehavior>
+                <behaviors:EventTriggerBehavior EventName="DoubleTapped">
+                    <behaviors:InvokeCommandAction Command="{StaticResource OpenOrderWindow}" CommandParameter="{x:Null}" />
+                </behaviors:EventTriggerBehavior>
+                <cb:PreviewKeyDownTriggerBehavior Key="Enter">
+                    <behaviors:InvokeCommandAction Command="{StaticResource OpenOrderWindow}" CommandParameter="{x:Null}" />
+                </cb:PreviewKeyDownTriggerBehavior>
+                <behaviors:EventTriggerBehavior EventName="RightTapped">
+                    <ca:SelectRightTappedItemAction />
+                </behaviors:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+            
+            <tc:DataGrid.Columns>
+                <tc:DataGridTemplateColumn x:Uid="OrdersColumnStatus" Tag="Status">
+                    <tc:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:DataType="entities:Order">
+                            <TextBlock Text="{x:Bind Status, Converter={StaticResource OrderStatusToLocalizedString}}" Style="{StaticResource GridCell}" />
+                        </DataTemplate>
+                    </tc:DataGridTemplateColumn.CellTemplate>
+                </tc:DataGridTemplateColumn>
+                <tc:DataGridTemplateColumn x:Uid="OrdersColumnPrice" Tag="Price">
+                    <tc:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:DataType="entities:Order">
+                            <TextBlock Text="{x:Bind Price}" HorizontalAlignment="Right" Style="{StaticResource GridCell}" />
+                        </DataTemplate>
+                    </tc:DataGridTemplateColumn.CellTemplate>
+                </tc:DataGridTemplateColumn>                
+                <tc:DataGridTemplateColumn x:Uid="OrdersColumnClient" Tag="Client">
+                    <tc:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:DataType="entities:Order">
+                            <TextBlock Text="{x:Bind Client.FullName}" Style="{StaticResource GridCell}" />
+                        </DataTemplate>
+                    </tc:DataGridTemplateColumn.CellTemplate>
+                </tc:DataGridTemplateColumn>
+                <tc:DataGridTemplateColumn x:Uid="OrdersColumnAddress" Tag="Address">
+                    <tc:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:DataType="entities:Order">
+                            <TextBlock Text="{x:Bind Address, Converter={StaticResource AddressToString}}" Style="{StaticResource GridCell}" />
+                        </DataTemplate>
+                    </tc:DataGridTemplateColumn.CellTemplate>
+                </tc:DataGridTemplateColumn>
+            </tc:DataGrid.Columns>
+            
+            <tc:DataGrid.RowStyle>
+                <Style TargetType="tc:DataGridRow">
+                    <Setter Property="ContextFlyout">
+                        <Setter.Value>
+                            <wc:CommandBarFlyout>
+                                <wc:CommandBarFlyout.SecondaryCommands>
+                                    <AppBarButton Command="{x:Bind OpenOrder}" />
+                                    <AppBarButton Command="{x:Bind DeleteOrder}" />
+                                </wc:CommandBarFlyout.SecondaryCommands>
+                            </wc:CommandBarFlyout>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </tc:DataGrid.RowStyle>
+            
+        </tc:DataGrid>
+        
+    </Grid>
+</pages:SmartPage>

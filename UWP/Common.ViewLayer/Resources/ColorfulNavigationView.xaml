@@ -1,0 +1,64 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:wm="using:Microsoft.UI.Xaml.Media">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White" />
+            <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="White" />
+            <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="White" />
+            <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="White" />
+            <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="White" />
+            <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="White" />
+            <SolidColorBrush x:Key="NavigationViewItemForegroundChecked" Color="White" />
+            <SolidColorBrush x:Key="NavigationViewItemForegroundCheckedPointerOver" Color="White" />
+            <SolidColorBrush x:Key="NavigationViewItemForegroundCheckedPressed" Color="White" />
+            <SolidColorBrush x:Key="NavigationViewItemForegroundDisabled" Color="WhiteSmoke" />
+
+            <wm:AcrylicBrush x:Key="NavigationViewItemBackground" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemAccentColor}" FallbackColor="{ThemeResource SystemAccentColor}" TintOpacity="0.8" />
+            <wm:RevealBackgroundBrush x:Key="NavigationViewItemBackgroundPointerOver" Color="{ThemeResource SystemAccentColorLight1}" FallbackColor="{ThemeResource SystemAccentColorLight1}" />
+            <wm:RevealBackgroundBrush x:Key="NavigationViewItemBackgroundPressed" Color="{ThemeResource SystemAccentColorLight2}" FallbackColor="{ThemeResource SystemAccentColorLight2}" />
+            <wm:RevealBackgroundBrush x:Key="NavigationViewItemBackgroundCheckedPointerOver" Color="{ThemeResource SystemAccentColorLight1}" FallbackColor="{ThemeResource SystemAccentColorLight1}" />
+            <wm:RevealBackgroundBrush x:Key="NavigationViewItemBackgroundCheckedPressed" Color="{ThemeResource SystemAccentColorLight2}" FallbackColor="{ThemeResource SystemAccentColorLight2}" />
+            <wm:RevealBackgroundBrush x:Key="NavigationViewItemBackgroundSelectedPointerOver" Color="{ThemeResource SystemAccentColorLight1}" FallbackColor="{ThemeResource SystemAccentColorLight1}" />
+            <wm:RevealBackgroundBrush x:Key="NavigationViewItemBackgroundSelectedPressed" Color="{ThemeResource SystemAccentColorLight2}" FallbackColor="{ThemeResource SystemAccentColorLight2}" />
+
+            <wm:AcrylicBrush x:Key="NavigationViewDefaultPaneBackground" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemAccentColor}" FallbackColor="{ThemeResource SystemAccentColor}" TintOpacity="0.8" />
+            <wm:AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemAccentColor}" FallbackColor="{ThemeResource SystemAccentColor}" TintOpacity="0.8" />
+            <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground" Color="White" />
+
+            <SolidColorBrush x:Key="TopNavigationViewItemForeground" Color="White" />
+            <SolidColorBrush x:Key="TopNavigationViewItemForegroundPointerOver" Color="White" />
+            <SolidColorBrush x:Key="TopNavigationViewItemForegroundPressed" Color="White" />
+            <SolidColorBrush x:Key="TopNavigationViewItemForegroundSelected" Color="White" />
+            <SolidColorBrush x:Key="TopNavigationViewItemForegroundSelectedPointerOver" Color="White" />
+            <SolidColorBrush x:Key="TopNavigationViewItemForegroundSelectedPressed" Color="White" />
+            <SolidColorBrush x:Key="TopNavigationViewItemForegroundDisabled" Color="WhiteSmoke" />            
+
+            <wm:RevealBackgroundBrush x:Key="TopNavigationViewItemBackgroundPointerOver" Color="{ThemeResource SystemAccentColorLight1}" FallbackColor="{ThemeResource SystemAccentColorLight1}" />
+            <wm:RevealBackgroundBrush x:Key="TopNavigationViewItemBackgroundPressed" Color="{ThemeResource SystemAccentColorLight2}" FallbackColor="{ThemeResource SystemAccentColorLight2}" />
+
+            <wm:AcrylicBrush x:Key="NavigationViewTopPaneBackground" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemAccentColor}" FallbackColor="{ThemeResource SystemAccentColor}" TintOpacity="0.8" />
+
+            <SolidColorBrush x:Key="NavigationViewButtonForegroundPointerOver" Color="White" />
+            <SolidColorBrush x:Key="NavigationViewButtonForegroundPressed" Color="White" />
+            <SolidColorBrush x:Key="NavigationViewButtonForegroundDisabled" Color="WhiteSmoke" />
+
+            <wm:AcrylicBrush x:Key="NavigationViewBackButtonBackground" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemAccentColor}" FallbackColor="{ThemeResource SystemAccentColor}" TintOpacity="0.8" />
+            <wm:RevealBackgroundBrush x:Key="NavigationViewButtonBackgroundPointerOver" Color="{ThemeResource SystemAccentColorLight1}" FallbackColor="{ThemeResource SystemAccentColorLight1}" />
+            <wm:RevealBackgroundBrush x:Key="NavigationViewButtonBackgroundPressed" Color="{ThemeResource SystemAccentColorLight2}" FallbackColor="{ThemeResource SystemAccentColorLight2}" />
+
+            <SolidColorBrush x:Key="NavigationViewItemSeparatorForeground" Color="{ThemeResource SystemAccentColorLight1}" />
+            <SolidColorBrush x:Key="TopNavigationViewItemSeparatorForeground" Color="{ThemeResource SystemAccentColorLight1}" />
+
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast" />
+    </ResourceDictionary.ThemeDictionaries>
+    
+    <Style TargetType="wc:NavigationViewItem">
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
+</ResourceDictionary>
